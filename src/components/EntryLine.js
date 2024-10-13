@@ -1,6 +1,5 @@
-import React, {useState} from 'react'
-import {Grid, Icon, Segment} from "semantic-ui-react";
-import ModalEdit from "./ModalEdit";
+import React from 'react'
+import {Grid, Icon, Segment} from "semantic-ui-react"
 
 function EntryLine(  {id, description, value, isExpense = false, deleteEntry, editEntry}) {
     return (
