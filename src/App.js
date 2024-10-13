@@ -7,10 +7,9 @@ import DisplayBalance from "./components/DisplayBalance"
 import DisplayBalances from "./components/DisplayBalances"
 import EntryLines from "./components/EntryLines";
 import ModalEdit from "./components/ModalEdit";
-
+import {useSelector} from 'react-redux'
 
 function App() {
-    const [entries, setEntries] = useState(initialEntries)
     const [description, setDescription] = useState('')
     const [value, setValue] = useState(0)
     const [isExpense, setIsExpense] = useState(false)
@@ -19,6 +18,7 @@ function App() {
     const [totalIncomes, setTotalIncomes] = useState(0)
     const [totalExpenses, setTotalExpenses] = useState(0)
     const [total, setTotal] = useState(0)
+    const entries = useSelector((state) => state.entries)
 
     useEffect(() => {
         if(!isOpen && entryId){
@@ -27,7 +27,7 @@ function App() {
             newEntries[index].description = description
             newEntries[index].value = value
             newEntries[index].isExpense = isExpense
-            setEntries(newEntries)
+            //setEntries(newEntries)
             resetEntry()
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -53,11 +53,6 @@ function App() {
 
     }, [entries]) // run everytime entries change
 
-    const deleteEntry = (id) => {
-        const result = entries.filter(entry => entry.id !== id)
-        setEntries(result)
-    }
-
     const editEntry = (id) => {
         console.log(`Edit entry with id ${id}`)
         if(id){
@@ -81,7 +76,7 @@ function App() {
         })
         console.log('entries', entries)
         console.log('result', result)
-        setEntries(result)
+        //setEntries(result)
         resetEntry()
     }
     const resetEntry = () => {
@@ -106,7 +101,6 @@ function App() {
         />
         <EntryLines
             entries={entries}
-            deleteEntry={deleteEntry}
             editEntry={editEntry}
         ></EntryLines>
         <MainHeader
@@ -138,31 +132,3 @@ function App() {
 }
 
 export default App
-
-var initialEntries = [
-    {
-        id:1,
-        description:'Work income',
-        value:100,
-        isExpense: false,
-    },
-    {
-        id:2,
-        description:'Sandwich',
-        value:5,
-        isExpense: true,
-    },
-    {
-        id:3,
-        description:'Rent',
-        value:300,
-        isExpense: true,
-    },
-    {
-        id:4,
-        description:'Work income',
-        value:150,
-        isExpense: false,
-    }
-]
-

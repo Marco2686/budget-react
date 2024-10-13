@@ -1,7 +1,10 @@
 import React from 'react'
 import {Grid, Icon, Segment} from "semantic-ui-react"
+import {useDispatch} from "react-redux"
+import {removeEntryRedux} from "../actions/entries.actions";
 
-function EntryLine(  {id, description, value, isExpense = false, deleteEntry, editEntry}) {
+function EntryLine(  {id, description, value, isExpense = false, editEntry}) {
+    const dispatch = useDispatch()
     return (
         <>
             <Segment color={isExpense ? 'red' : 'green'}>
@@ -15,7 +18,7 @@ function EntryLine(  {id, description, value, isExpense = false, deleteEntry, ed
                         </Grid.Column>
                         <Grid.Column width={5}>
                             <Icon name="edit" bordered onClick={() => editEntry(id)}></Icon>
-                            <Icon name="trash" bordered onClick={() => deleteEntry(id)}></Icon>
+                            <Icon name="trash" bordered onClick={() => dispatch(removeEntryRedux(id))}></Icon>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
