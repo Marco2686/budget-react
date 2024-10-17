@@ -8,30 +8,37 @@ import DisplayBalances from "./components/DisplayBalances"
 import EntryLines from "./components/EntryLines";
 import ModalEdit from "./components/ModalEdit";
 import {useSelector} from 'react-redux'
+import {
+    enable as enableDarkMode,
+    disable as disableDarkMode,
+} from 'darkreader'
 
 function App() {
-    const [description, setDescription] = useState('')
-    const [value, setValue] = useState(0)
-    const [isExpense, setIsExpense] = useState(false)
-    const [isOpen, setIsOpen] = useState(false)
-    const [entryId, setEntryId] = useState(null)
+
     const [totalIncomes, setTotalIncomes] = useState(0)
     const [totalExpenses, setTotalExpenses] = useState(0)
     const [total, setTotal] = useState(0)
+    const [entry, setEntry] = useState()
     const entries = useSelector((state) => state.entries)
+    const {isOpen, id} = useSelector((state) => state.modals)
 
     useEffect(() => {
-        if(!isOpen && entryId){
-            const index = entries.findIndex(entry => entry.id === entryId)
-            const newEntries = [...entries]
-            newEntries[index].description = description
-            newEntries[index].value = value
-            newEntries[index].isExpense = isExpense
-            //setEntries(newEntries)
-            resetEntry()
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[isOpen]) // here if I pass a [] it run at startup
+        // Dark mode
+        enableDarkMode({
+            brightness: 100,
+            contrast: 90,
+            sepia: 10,
+        });
+
+        return () => {
+            disableDarkMode();
+        };
+    }, )
+
+    useEffect(() => {
+        const index = entries.findIndex(entry => entry.id === id)
+        setEntry(entries[index])
+    },[isOpen, id]) // here if I pass a [] it run at startup
 
     useEffect(() => {
         let totalIncomes = 0
@@ -53,37 +60,6 @@ function App() {
 
     }, [entries]) // run everytime entries change
 
-    const editEntry = (id) => {
-        console.log(`Edit entry with id ${id}`)
-        if(id){
-            const index = entries.findIndex(entry => entry.id === id)
-            const entry = entries[index]
-            setEntryId(entry.id)
-            setDescription(entry.description)
-            setValue(entry.value)
-            setIsExpense(entry.isExpense)
-            setIsOpen(true)
-        }
-    }
-
-    // We are using the variable from the state
-    const addEntry = () => {
-        const result = entries.concat({
-            id: entries.length+1,
-            description,
-            value,
-            isExpense: isExpense
-        })
-        console.log('entries', entries)
-        console.log('result', result)
-        //setEntries(result)
-        resetEntry()
-    }
-    const resetEntry = () => {
-        setDescription('')
-        setValue(0)
-        setIsExpense(false)
-    }
     return (
     <Container>
         <MainHeader
@@ -101,31 +77,16 @@ function App() {
         />
         <EntryLines
             entries={entries}
-            editEntry={editEntry}
         ></EntryLines>
         <MainHeader
             title="Add new transaction"
             type="h3"
         />
         <NewEntryForm
-            addEntry={addEntry}
-            description={description}
-            value={value}
-            isExpense={isExpense}
-            setDescription={setDescription}
-            setValue={setValue}
-            setIsExpense={setIsExpense}
         />
         <ModalEdit
             isOpen={isOpen}
-            setIsOpen={setIsOpen}
-            addEntry={addEntry}
-            description={description}
-            value={value}
-            isExpense={isExpense}
-            setDescription={setDescription}
-            setValue={setValue}
-            setIsExpense={setIsExpense}
+            {...entry}
         />
     </Container>
     )

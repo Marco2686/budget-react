@@ -11,3 +11,9 @@ export const removeEntryRedux = (id) => {
         payload: {id} // We are passing an object with property id: id
     }
 }
+export const updateEntryRedux = (id, entry) => {
+    return {
+        type: 'UPDATE_ENTRY',
+        payload: {id, entry}
+    }
+}
