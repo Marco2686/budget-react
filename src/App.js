@@ -26,19 +26,20 @@ function App() {
         // Dark mode
         enableDarkMode({
             brightness: 100,
-            contrast: 90,
-            sepia: 10,
+            contrast: 100,
+            sepia: 5,
+            grayscale: 0,
         });
 
         return () => {
             disableDarkMode();
         };
-    }, )
+    }, [])
 
     useEffect(() => {
         const index = entries.findIndex(entry => entry.id === id)
         setEntry(entries[index])
-    },[isOpen, id]) // here if I pass a [] it run at startup
+    },[isOpen, id, entries]) // here if I pass a [] it run at startup
 
     useEffect(() => {
         let totalIncomes = 0
