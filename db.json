@@ -2,31 +2,48 @@
   "entries": [
     {
       "id": "1",
-      "description": "Work income redux",
+      "description": "Work income redux"
+    },
+    {
+      "id": "2",
+      "description": "Sandwich redux"
+    },
+    {
+      "id": "3",
+      "description": "Rent"
+    },
+    {
+      "id": "4",
+      "description": "Work income"
+    },
+    {
+      "id": "5",
+      "description": "Work income redux"
+    }
+  ],
+  "values": [
+    {
+      "id": "1",
       "value": 100,
       "isExpense": false
     },
     {
       "id": "2",
-      "description": "Sandwich redux",
       "value": 5,
       "isExpense": true
     },
     {
       "id": "3",
-      "description": "Rent",
       "value": 300,
       "isExpense": true
     },
     {
       "id": "4",
-      "description": "Work income",
       "value": 150,
       "isExpense": false
     },
     {
       "id": "5",
-      "description": "Work income redux",
       "value": 500,
       "isExpense": false
     }

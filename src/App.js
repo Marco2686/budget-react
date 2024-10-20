@@ -7,7 +7,8 @@ import DisplayBalance from "./components/DisplayBalance"
 import DisplayBalances from "./components/DisplayBalances"
 import EntryLines from "./components/EntryLines";
 import ModalEdit from "./components/ModalEdit";
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+import {getAllEntries} from "./actions/entries.actions"
 import {
     enable as enableDarkMode,
     disable as disableDarkMode,
@@ -60,6 +61,11 @@ function App() {
 
 
     }, [entries]) // run everytime entries change
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getAllEntries())
+    },[dispatch])
 
     return (
     <Container>
