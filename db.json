@@ -1,51 +1,51 @@
 {
   "entries": [
     {
-      "id": "1",
-      "description": "Work income redux"
-    },
-    {
       "id": "2",
-      "description": "Sandwich redux"
-    },
-    {
-      "id": "3",
-      "description": "Rent"
-    },
-    {
-      "id": "4",
       "description": "Work income"
     },
     {
-      "id": "5",
-      "description": "Work income redux"
+      "id": "17665268-fa1c-450c-bf08-0ce3c6869f9e",
+      "description": "32bit Gennauo"
+    },
+    {
+      "id": "55f33b22-b4b6-4755-84b1-668112b6edfa",
+      "description": "DFS"
+    },
+    {
+      "id": "b0702a41-f0ac-4de1-904d-fac001a7da77",
+      "description": "Psicologo"
+    },
+    {
+      "id": "20f6b431-065f-43f5-b9b8-37eb798e603a",
+      "description": "Sigarette"
     }
   ],
   "values": [
     {
-      "id": "1",
+      "id": "2",
       "value": 100,
       "isExpense": false
     },
     {
-      "id": "2",
-      "value": 5,
-      "isExpense": true
+      "id": "17665268-fa1c-450c-bf08-0ce3c6869f9e",
+      "isExpense": false,
+      "value": "1650"
     },
     {
-      "id": "3",
-      "value": 300,
-      "isExpense": true
+      "id": "55f33b22-b4b6-4755-84b1-668112b6edfa",
+      "isExpense": false,
+      "value": "3200"
     },
     {
-      "id": "4",
-      "value": 150,
-      "isExpense": false
+      "id": "b0702a41-f0ac-4de1-904d-fac001a7da77",
+      "isExpense": true,
+      "value": "216.7"
     },
     {
-      "id": "5",
-      "value": 500,
-      "isExpense": false
+      "id": "20f6b431-065f-43f5-b9b8-37eb798e603a",
+      "isExpense": true,
+      "value": "150"
     }
   ]
 }
